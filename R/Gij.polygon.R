@@ -1,10 +1,10 @@
 #' Calculate spatial autocorrelation with OD data and corresponding polygons.
 #'
-#' @param df A data.frame that contains your Origin-Destination data. The df must consist of "oid"(origin id), "did"(destination id), "n"(flow weight).
+#' @param df A data.frame that contains your Origin-Destination data. The df must consist of "oid" (origin id), "did" (destination id), "n" (flow weight).
 #' @param shape A shapefile (in a polygon type) that matches to your OD dataframe. The shape must have an "id" column to match your ids in df.
 #' @param queen A T/F input that is used to calculate \code{spdep}'s spatial contingency (Please view documents of \link[spdep]{poly2nb} for more information).
 #' @param snap A parameter that is also used to calculate \code{spdep}'s spatial contingency (Please view documents of \link[spdep]{poly2nb} for more information).
-#' @param method A string value among "o"(origin based), "d"(destination based), and "t"(both way) which determines the way to generate Spatial Weights. The default value is "t".
+#' @param method A string value among "o" (origin based), "d" (destination based), and "t" (both way) which determines the way to generate Spatial Weights. The default value is "t".
 #' @param n An integer value to define how many times you want to execute bootstrapping.
 #' @return The result is in the form of a list which includes a dataframe and a \code{sf} object.
 #' Both contain Gij statistics and p-value columns merged to your input df. The geometry type of the latter is linestring.
