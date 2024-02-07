@@ -31,3 +31,5 @@ Suggests:
     rmarkdown,
     tmap
 VignetteBuilder: knitr
+URL: https://github.com/YoungbinLee/spnaf
+BugReports: https://github.com/YoungbinLee/spnaf/issues
