@@ -6,7 +6,7 @@ SpatialWeight <- function(df, shape, snap, queen){
     cat("(1) Creating Spatial Weights... ")
 
     w <- NULL
-    nb <- unclass(spdep::poly2nb(shape, snap, queen)) # create nb data from input shape
+    nb <- unclass(spdep::poly2nb(shape, snap = snap, queen =queen)) # create nb data from input shape
     original_id <- shape$id
     nb <- lapply(nb, function(data){
         return(original_id[data]) # substitute adjacent index for original id
