@@ -33,7 +33,7 @@ Networknb <- function(shape, snap = 1, queen = TRUE, method = "t"){
 
     cat("(1) Creating base spatial weights... ")
     w <- NULL
-    nb <- unclass(spdep::poly2nb(shape, snap, queen)) # create nb data from input shape
+    nb <- unclass(spdep::poly2nb(shape, snap = snap, queen = queen)) # create nb data from input shape
     original_id <- shape$id
     nb <- lapply(nb, function(data){
         return(original_id[data]) # substitute adjacent index for original id
