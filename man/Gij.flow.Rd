@@ -8,11 +8,11 @@ Gij.flow(
   df,
   shape,
   method = "queen",
+  snap = 1,
   k = NULL,
   d = NULL,
   idw = FALSE,
   row_standardized = FALSE,
-  snap = 1,
   OD = "t",
   R = 1000
 )
@@ -24,6 +24,8 @@ Gij.flow(
 
 \item{method}{A string value among "queen" (spatial contiguity), "KNN" (k-nearest neighbors), and "fixed_distance" (fixed distance).}
 
+\item{snap}{A parameter used to calculate \code{spdep}'s spatial contiguity (please refer to the \link[spdep]{poly2nb} documentation for more information).}
+
 \item{k}{An integer value to define the number of nearest neighbors for the K-nearest neighbors method.}
 
 \item{d}{An integer value to define the distance for the fixed distance spatial weight matrix.}
@@ -31,8 +33,6 @@ Gij.flow(
 \item{idw}{A logical value indicating whether to use inverse distance weighting.}
 
 \item{row_standardized}{A logical value indicating whether to row-standardize the spatial weights.}
-
-\item{snap}{A parameter used to calculate \code{spdep}'s spatial contiguity (please refer to the \link[spdep]{poly2nb} documentation for more information).}
 
 \item{OD}{A string value among "o" (origin-based), "d" (destination-based), and "t" (both ways), which determines how to generate spatial weights. The default value is "t".}
 

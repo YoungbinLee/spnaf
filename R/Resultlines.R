@@ -2,7 +2,7 @@
 
 Resultlines <- function(shape, result_frame){
 
-    cat("(4) Generating result in lines ... ")
+    cat("(4) Generating result in lines ... \n")
 
     x <- y <- geometry <- coords <- id <- oid <- did <- n <- Gij <- pval <- NULL
     x.x <- y.x <- x.y <- y.y <- oid_x <- oid_y <- did_x <- did_y <- NULL

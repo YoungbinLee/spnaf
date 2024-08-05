@@ -10,7 +10,7 @@
 #' @importFrom spdep nbdists
 
 SpatialWeight <- function(df, shape, snap = NULL, method = "queen", k = NULL,
-                          d = NULL, idw = FALSE, row_standardized = FALSE) {
+                          d = NULL, idw = FALSE, row_standardize = FALSE){
     cat("(1) Creating Spatial Weights... ")
 
     w <- NULL
@@ -50,12 +50,12 @@ SpatialWeight <- function(df, shape, snap = NULL, method = "queen", k = NULL,
         dist_matrix <- spdep::nbdists(nb, coordinates_matrix, longlat = TRUE)
         inv_dist_list <- lapply(dist_matrix, function(x) 1 / x)
         inv_dist_list <- lapply(inv_dist_list, function(x) ifelse(is.infinite(x), 0, x))
-        if(row_standardized){
+        if(row_standardize){
             inv_dist_list <- lapply(inv_dist_list, function(x) x / sum(x))
         }
     }else{
         weight_list <- lapply(nb, function(x) rep(1, length(x)))
-        if(row_standardized){
+        if(row_standardize){
             weight_list <- lapply(weight_list, function(x) x / sum(x))
         }
     }
@@ -102,7 +102,7 @@ SpatialWeight <- function(df, shape, snap = NULL, method = "queen", k = NULL,
     cat("Done!\n")
     # Alarm the size of the union set
     cat(paste0("note: Total ", nrow(U), " network combinations are ready to be analyzed\n"))
-    cat(paste0("note: which is calculated by the input data\n"))
+    # cat(paste0("note: which is calculated by the input data\n"))
 
     return(result)
 }

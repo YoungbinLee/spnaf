@@ -38,7 +38,7 @@ plot(CA_polygon, col = 'white', main = 'CA polygon')
 ```
 
 ## Function: Gij.flow
-*spnaf* package aims to measure spatial density of networks, which have origins (starting point) and destinations (ending point). Main function of *spnaf* is called **Gij.flow** and the first main input of the function is **df** which is OD data in a data.frame form that must contain "oid", "did", and "n" (please refer to the help document) like CA above. The second important input is **shape** which is corresponding polygon object in *sf* class. The function also inherited two parameters from [_spdep_](https://r-spatial.github.io/spdep/) such as **queen, snap**. The parameter **method** is one of c("t", "o", "d") which stand for total, origins only, and destinations only respectively (Please check [this paper](https://link.springer.com/article/10.1007/s10109-008-0068-2) to get more information about the method). The last parameter **n** is used for bootstrapping permutation of resampling the individual statistic n times to generate a non-parametric distribution, since there would be a violation of the assumption of normality when one tries to calculate a spatial statistic with polygons(see how authors told about it in [this paper](https://onlinelibrary.wiley.com/doi/10.1111/j.1538-4632.1992.tb00261.x)). The process should be done to ensure a statistical significance of the statistic.
+*spnaf* package aims to measure spatial density of networks, which have origins (starting point) and destinations (ending point). Main function of *spnaf* is called **Gij.flow** and the first main input of the function is **df** which is OD data in a data.frame form that must contain "oid", "did", and "n" (please refer to the help document) like CA above. The second important input is **shape** which is corresponding polygon object in *sf* class. The function also inherited two parameters from [_spdep_](https://r-spatial.github.io/spdep/) such as **queen, snap**. **k** and **d** are from [_spdep_](https://r-spatial.github.io/spdep/) as well and the former is needed to be defined as integer format if the method is "KNN" and the latter should be a valid number for calculating when the method is "fixed_distance" (upper distance bound in the metric of the points if planar coordinates, in km if in geographical coordinates). **idw** is a TRUE/FALSE parameter that decides if the spatial weights need to be calculated as an inverted form. The parameter **method** is one of c("t", "o", "d") which stand for total, origins only, and destinations only respectively (Please check [this paper](https://link.springer.com/article/10.1007/s10109-008-0068-2) to get more information about the method). The last parameter **R** is used for bootstrapping permutation of resampling the individual statistic R times to generate a non-parametric distribution, since there would be a violation of the assumption of normality when one tries to calculate a spatial statistic with polygons(see how authors told about it in [this paper](https://onlinelibrary.wiley.com/doi/10.1111/j.1538-4632.1992.tb00261.x)). The process should be done to ensure a statistical significance of the statistic.
 
 ```{r}
 args(Gij.flow)
@@ -61,7 +61,8 @@ CA_polygon <- spnaf::CA_polygon
 head(CA_polygon) # it has geometry column
 
 # Execution of Gij.flow with data above and given parameters
-result <- Gij.flow(df = OD, shape = CA_polygon, method = 'queen', snap = 1, OD = 't', R = 1000)
+result <- Gij.flow(df = OD, shape = CA_polygon, method = 'queen', snap = 1,
+                   OD = 't', R = 1000, row_standardize = FALSE, k = NULL, d = NULL)
 ```
 
 ### Interpretation of the result
