@@ -44,9 +44,8 @@
 #' @export Gij.flow
 
 
-Gij.flow <- function(df, shape, method = "queen", k = NULL, d = NULL,
-                     idw = FALSE, row_standardized = FALSE, snap = 1,
-                     OD = 't', R = 1000){
+Gij.flow <- function(df, shape, method = "queen", snap = 1, k = NULL, d = NULL,
+                     idw = FALSE, row_standardized = FALSE, OD = 't', R = 1000){
   oid <- did <- Gij <- NULL
 
   sw <- SpatialWeight(df, shape, snap = snap, method = method, k = k, d = d)
